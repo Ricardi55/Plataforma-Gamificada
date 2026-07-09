@@ -1,0 +1,36 @@
+<svg viewBox="0 0 240 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bronzeGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#e9b27e"/>
+      <stop offset="55%" stop-color="#cd7f32"/>
+      <stop offset="100%" stop-color="#8b5a2b"/>
+    </linearGradient>
+    <radialGradient id="shine-bronzeGrad" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  
+
+  <!-- ribbon banner -->
+  
+  <polygon points="14,170 226,170 226,240 214,228 226,216 14,216 26,228 14,240"
+           fill="#16a34a"/>
+  <rect x="14" y="170" width="212" height="58" fill="#4ade80"/>
+  
+
+  <!-- outer ring -->
+  <circle cx="120" cy="108" r="78" fill="#8b5a2b"/>
+  <circle cx="120" cy="108" r="68" fill="url(#bronzeGrad)" stroke="#8b5a2b" stroke-width="3"/>
+  <circle cx="120" cy="108" r="68" fill="url(#shine-bronzeGrad)"/>
+  <circle cx="120" cy="108" r="56" fill="none" stroke="#ffffff" stroke-width="2" stroke-opacity="0.45" stroke-dasharray="4 3"/>
+
+  <!-- star -->
+  <path d="M120.0,82.0 L126.47,99.1 L144.73,99.97 L130.46,111.4 L135.28,129.03 L120.0,119.0 L104.72,129.03 L109.54,111.4 L95.27,99.97 L113.53,99.1 Z" fill="#ffffff" opacity="0.95"/>
+
+  <!-- banner text -->
+  <text x="120" y="195" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#ffffff" letter-spacing="2">NIVEL</text>
+  <text x="120" y="222" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="800" fill="#ffffff" letter-spacing="1">PRINCIPIANTE</text>
+</svg>
