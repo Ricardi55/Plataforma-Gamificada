@@ -1,9 +1,0 @@
-{
-  "name": "gamified-api-mutation-platform",
-  "version": "1.0.0",
-  "description": "Plataforma gamificada tipo Duolingo para aprender pruebas de mutacion de software en API REST.",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  }
-}
