@@ -1,0 +1,35 @@
+{
+  "attempts": [
+    {
+      "id": "5313e8b6-cded-4045-968f-e51f31270aa2",
+      "createdAt": "2026-06-30T01:14:29.954Z",
+      "studentName": "ricardoxd",
+      "level": 1,
+      "type": "beginner",
+      "exerciseId": "b5",
+      "answer": 0,
+      "fileName": null,
+      "correct": true,
+      "score": 100,
+      "remainingSeconds": 235,
+      "usedHint": false,
+      "usedHintType": null
+    },
+    {
+      "id": "9ca1b885-e8fe-49f4-bc48-5ca206d8da6b",
+      "createdAt": "2026-07-03T14:11:58.586Z",
+      "studentName": "Ricardo Llallico",
+      "level": 1,
+      "type": "beginner",
+      "exerciseId": "b6",
+      "answer": 0,
+      "fileName": null,
+      "correct": true,
+      "score": 100,
+      "remainingSeconds": 0,
+      "usedHint": false,
+      "usedHintType": null
+    }
+  ],
+  "sessions": []
+}
