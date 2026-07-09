@@ -714,6 +714,71 @@ function routeApi(req, res, url) {
       })
       .catch(() => sendJson(res, 400, { saved: false, error: "No se pudo guardar la sesion." }));
   }
+    if (req.method === "GET" && url.pathname === "/api/health") {
+    return sendJson(res, 200, {
+      ok: true,
+      supabaseConfigured: hasSupabaseConfig(),
+      supabaseUrlConfigured: Boolean(SUPABASE_URL),
+      supabaseKeyConfigured: Boolean(SUPABASE_SERVICE_ROLE_KEY),
+      table: SUPABASE_TABLE
+    });
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/supabase-test") {
+    const externalId = `debug-${Date.now()}`;
+
+    const body = {
+      external_id: externalId,
+      event_type: "session",
+      student_name: "TEST_RENDER",
+      session_id: externalId,
+      status: "debug",
+      payload: {
+        source: "render-debug",
+        created_at: new Date().toISOString()
+      }
+    };
+
+    if (!hasSupabaseConfig()) {
+      return sendJson(res, 500, {
+        ok: false,
+        message: "Supabase no configurado",
+        supabaseUrlConfigured: Boolean(SUPABASE_URL),
+        supabaseKeyConfigured: Boolean(SUPABASE_SERVICE_ROLE_KEY)
+      });
+    }
+
+    return fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`, {
+      method: "POST",
+      headers: supabaseHeaders("upsert"),
+      body: JSON.stringify(body)
+    })
+      .then(async response => {
+        if (!response.ok) {
+          const detail = await response.text();
+          return sendJson(res, 500, {
+            ok: false,
+            message: "Error insertando en Supabase",
+            status: response.status,
+            detail
+          });
+        }
+
+        sendJson(res, 200, {
+          ok: true,
+          message: "Registro de prueba insertado en Supabase",
+          table: SUPABASE_TABLE,
+          externalId
+        });
+      })
+      .catch(error => {
+        sendJson(res, 500, {
+          ok: false,
+          message: "Error interno probando Supabase",
+          error: error.message
+        });
+      });
+  }
   sendJson(res, 404, { error: "Ruta API no encontrada" });
 }
 
