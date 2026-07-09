@@ -1,0 +1,71 @@
+{
+  "attempts": [
+    {
+      "id": "5313e8b6-cded-4045-968f-e51f31270aa2",
+      "createdAt": "2026-06-30T01:14:29.954Z",
+      "studentName": "ricardoxd",
+      "level": 1,
+      "type": "beginner",
+      "exerciseId": "b5",
+      "answer": 0,
+      "fileName": null,
+      "correct": true,
+      "score": 100,
+      "remainingSeconds": 235,
+      "usedHint": false,
+      "usedHintType": null
+    },
+    {
+      "id": "9ca1b885-e8fe-49f4-bc48-5ca206d8da6b",
+      "createdAt": "2026-07-03T14:11:58.586Z",
+      "studentName": "Ricardo Llallico",
+      "level": 1,
+      "type": "beginner",
+      "exerciseId": "b6",
+      "answer": 0,
+      "fileName": null,
+      "correct": true,
+      "score": 100,
+      "remainingSeconds": 0,
+      "usedHint": false,
+      "usedHintType": null
+    },
+    {
+      "id": "d66b5092-ac07-4e23-8b18-7f493763429e",
+      "createdAt": "2026-07-09T21:25:43.000Z",
+      "studentName": "Prueba",
+      "level": 1,
+      "type": "beginner",
+      "exerciseId": "b1",
+      "answer": 1,
+      "fileName": null,
+      "sessionId": "test-session",
+      "correct": true,
+      "score": 100,
+      "feedback": "Un mutante es un cambio pequeno hecho a proposito. Si tus pruebas fallan, significa que detectaron el cambio.",
+      "remainingSeconds": null,
+      "usedHint": false,
+      "usedHintType": null,
+      "hadWrongAttempt": false
+    },
+    {
+      "id": "99b577dd-8724-403e-9c57-44d3fbf1f82b",
+      "createdAt": "2026-07-09T21:28:43.044Z",
+      "studentName": "Prueba",
+      "level": 1,
+      "type": "beginner",
+      "exerciseId": "b1",
+      "answer": 1,
+      "fileName": null,
+      "sessionId": "test-session",
+      "correct": true,
+      "score": 100,
+      "feedback": "Un mutante es un cambio pequeno hecho a proposito. Si tus pruebas fallan, significa que detectaron el cambio.",
+      "remainingSeconds": 100,
+      "usedHint": false,
+      "usedHintType": null,
+      "hadWrongAttempt": false
+    }
+  ],
+  "sessions": []
+}
