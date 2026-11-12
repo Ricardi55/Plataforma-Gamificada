@@ -1,0 +1,49 @@
+{
+  "info": {
+    "name": "MutAPI nivel 11 - plantilla",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000/practice/11",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Postman: código de estado",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/users",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Ana\",\n  \"email\": \"ana@example.test\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Escribe aquí una comprobación pm.test sobre la respuesta.",
+              "// Luego exporta la colección como JSON v2.1 y súbela a MutAPI."
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

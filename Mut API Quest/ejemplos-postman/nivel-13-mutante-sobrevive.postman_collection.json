@@ -1,0 +1,48 @@
+{
+  "info": {
+    "name": "MutAPI nivel 13 - ejemplo resuelto",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000/practice/13",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Postman: precio negativo",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/products",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Producto de prueba\",\n  \"price\": -1\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Respuesta JSON\", function () { pm.expect(pm.response.json()).to.be.an(\"object\"); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
