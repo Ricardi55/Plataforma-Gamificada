@@ -288,32 +288,9 @@ function playerKey(name) {
   return `${localKey}:${name.trim().toLowerCase()}`;
 }
 
-function loadProgress(name) {
-  const saved = localStorage.getItem(playerKey(name));
-  state.progress = { ...defaultProgress(), courseVersion: 2 };
-  if (!saved) return;
-  try {
-    const savedProgress = JSON.parse(saved);
-    state.progress = { ...state.progress, ...savedProgress, courseVersion: savedProgress.courseVersion };
-    state.progress.badges = state.progress.badges.filter(id => courseBadgeIds.includes(id));
-    state.progress.usedExercises = normalizeUsedExercises(state.progress.usedExercises);
-    if (state.progress.courseVersion !== 2) {
-      state.progress.completedLevels = state.progress.completedLevels
-        .filter(level => level <= 7 || level >= 11)
-        .map(level => level >= 11 ? level - 3 : level)
-        .filter(level => level <= 10);
-      state.progress.unlockedLevel = Math.min(state.progress.unlockedLevel, 8);
-      while (state.progress.unlockedLevel < 10 && state.progress.completedLevels.includes(state.progress.unlockedLevel)) {
-        state.progress.unlockedLevel++;
-      }
-      state.progress.badges = state.progress.badges.filter(id =>
-        badgeCatalog.find(badge => badge.id === id)?.when(state.progress));
-      state.progress.courseVersion = 2;
-      saveProgress();
-    }
-  } catch (error) {
-    console.warn("No se pudo cargar progreso local", error);
-  }
+function loadProgress() {
+  state.progress = defaultProgress();
+  state.codeDrafts = {};
 }
 
 function normalizeUsedExercises(usedExercises = {}) {
@@ -323,11 +300,6 @@ function normalizeUsedExercises(usedExercises = {}) {
     advanced: Array.isArray(usedExercises.advanced) ? usedExercises.advanced : [],
     postman: Array.isArray(usedExercises.postman) ? usedExercises.postman : []
   };
-}
-
-function saveProgress() {
-  if (!state.playerName) return;
-  localStorage.setItem(playerKey(state.playerName), JSON.stringify(state.progress));
 }
 
 function shuffle(items) {
@@ -356,7 +328,6 @@ function renderStats() {
   els.rewards.textContent = state.progress.rewards;
   renderSessionTime();
   renderBadges();
-  saveProgress();
 }
 
 function renderLives() {
@@ -832,6 +803,7 @@ function showGameOverDialog() {
 function backToStart() {
   stopTimer();
   endSession(false);
+  loadProgress();
   if (els.exerciseDialog.open) els.exerciseDialog.close();
   if (els.levelCompleteDialog.open) els.levelCompleteDialog.close();
   els.appShell.hidden = true;
@@ -958,7 +930,7 @@ els.startForm.addEventListener("submit", event => {
     return;
   }
   state.playerName = name;
-  loadProgress(name);
+  loadProgress();
   startSessionTimer();
   awardBadges();
   renderStats();
@@ -1000,8 +972,9 @@ function renderPostman(exercise) {
     <div id="feedback" class="feedback" aria-live="polite"></div>`;
   const editor = els.exerciseHost.querySelector('#testCode');
   const draftKey = `${playerKey(state.playerName)}:code-v2:${exercise.id}`;
-  try { const saved = localStorage.getItem(draftKey); if (saved && saved.length <= 12000) editor.value = saved; } catch {}
-  const saveDraft = () => { try { localStorage.setItem(draftKey, editor.value); } catch {} };
+  const saved = state.codeDrafts[draftKey];
+  if (saved) editor.value = saved;
+  const saveDraft = () => { state.codeDrafts[draftKey] = editor.value; };
   editor.addEventListener('input', () => {
     saveDraft();
     if (!state.evaluating) {
